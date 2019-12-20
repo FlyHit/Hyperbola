@@ -1,0 +1,36 @@
+package org.eclipse.hyperbola;
+
+import org.eclipse.jface.action.ICoolBarManager;
+import org.eclipse.jface.action.IMenuManager;
+import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.application.ActionBarAdvisor;
+import org.eclipse.ui.application.IActionBarConfigurer;
+
+/**
+ * 创建窗体动作,使用createActionBarAdvisor()初始化
+ * @author 11648
+ *
+ */
+public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
+
+	public ApplicationActionBarAdvisor(IActionBarConfigurer configurer) {
+		super(configurer);
+	}
+	
+	@Override
+	protected void makeActions(IWorkbenchWindow window) {
+		super.makeActions(window);
+	}
+	
+	@Override
+	protected void fillMenuBar(IMenuManager menuBar) {
+		super.fillMenuBar(menuBar);
+	}
+	
+	@Override
+	protected void fillCoolBar(ICoolBarManager coolBar) {
+		super.fillCoolBar(coolBar);
+	}
+
+}
+
