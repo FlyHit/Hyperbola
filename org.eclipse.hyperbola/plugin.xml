@@ -14,10 +14,19 @@
    <extension
          point="org.eclipse.ui.perspectives">
       <perspective
-            class="org.eclipse.hyperbola.Perspective"
-            name="RCP Perspective"
-            id="org.eclipse.hyperbola.perspective">
+              class="org.eclipse.hyperbola.Perspective"
+              name="Hyperbola Perspective"
+              id="org.eclipse.hyperbola.perspective">
       </perspective>
    </extension>
+    <extension
+            point="org.eclipse.ui.views">
+        <view
+                class="org.eclipse.hyperbola.ContactsView"
+                id="org.eclipse.hyperbola.views.contacts"
+                name="Contacts"
+                restorable="true">
+        </view>
+    </extension>
 
 </plugin>
