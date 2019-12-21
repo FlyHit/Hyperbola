@@ -22,11 +22,12 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
         return new ApplicationActionBarAdvisor(configurer);
     }
 
-    //    设置窗体的初始尺寸,隐藏状态栏和工具栏
+    //    在窗体控件创建前调用,可设置窗体的初始尺寸,隐藏状态栏和工具栏
     @Override
     public void preWindowOpen() {
         IWorkbenchWindowConfigurer configurer = getWindowConfigurer();
         configurer.setInitialSize(new Point(400, 300));
+        configurer.setShowMenuBar(true);  // 显示菜单栏,如果没有菜单项仍不可见
         configurer.setShowCoolBar(false);
         configurer.setShowStatusLine(false);
         configurer.setTitle("Hyperbola！");
