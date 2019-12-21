@@ -14,7 +14,7 @@ public class ApplicationWorkbenchAdvisor extends WorkbenchAdvisor {
         return new ApplicationWorkbenchWindowAdvisor(configurer);
     }
 
-//	一个应用可能有多个perspective,但workbenchAdvisor只能定义一个初始perspective
+    //	一个应用可能有多个perspective,但workbenchAdvisor只能定义一个初始perspective
 //	应用之后可以使用preference修改初始perspective
     @Override
     public String getInitialWindowPerspectiveId() {
