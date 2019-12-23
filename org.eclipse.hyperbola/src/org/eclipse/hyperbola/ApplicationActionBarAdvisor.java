@@ -1,7 +1,6 @@
 package org.eclipse.hyperbola;
 
-import org.eclipse.jface.action.IMenuManager;
-import org.eclipse.jface.action.MenuManager;
+import org.eclipse.jface.action.*;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.application.ActionBarAdvisor;
@@ -15,6 +14,7 @@ import org.eclipse.ui.application.IActionBarConfigurer;
 public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
     private ActionFactory.IWorkbenchAction exitAction;
     private ActionFactory.IWorkbenchAction aboutAction;
+    private ActionFactory.IWorkbenchAction addContactAction;
 
     public ApplicationActionBarAdvisor(IActionBarConfigurer configurer) {
         super(configurer);
@@ -29,11 +29,14 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
         register(exitAction);
         aboutAction = ActionFactory.ABOUT.create(window);
         register(aboutAction);
+        addContactAction = new AddContactAction(window);
+        register(addContactAction);
     }
 
     @Override
     protected void fillMenuBar(IMenuManager menuBar) {
         MenuManager hyperbolaMenu = new MenuManager("&Hyperbola", "hyperbola");
+        hyperbolaMenu.add(addContactAction);
         hyperbolaMenu.add(exitAction);
 //        hyperbolaMenu.add(new GroupMarker("other-actions"));
         MenuManager helpMenu = new MenuManager("&Help", "help");
@@ -42,5 +45,27 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
         menuBar.add(helpMenu);
 //        hyperbolaMenu.add(helpMenu);  // 菜单可以嵌套
     }
+
+    @Override
+    protected void fillCoolBar(ICoolBarManager coolBar) {
+        IToolBarManager toolBar = new ToolBarManager(coolBar.getStyle());
+        coolBar.add(toolBar);
+        toolBar.add(addContactAction);
+    }
+
+    protected void fillTrayItem(IMenuManager trayItem) {
+        trayItem.add(aboutAction);
+        trayItem.add(exitAction);
+    }
+
+    //    可移动的工具栏
+//    public void populateCoolBar(IActionBarConfigurer configurer) {
+//        ICoolBarManager mgr = configurer.getCoolBarManager();
+//        IToolBarManager toolBarManager = new ToolBarManager(mgr.getStyle());
+//        mgr.add(toolBarManager);
+//        toolBarManager.add(addContactAction);
+//        toolBarManager.add(new Separator());
+//        toolBarManager.add(addContactAction);
+//    }
 }
 

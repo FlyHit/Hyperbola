@@ -26,4 +26,5 @@ public interface IImageKeys {
     String DO_NOT_DISTURB = "icons/dnd.gif";
     String GROUP = "icons/groups.gif";
     String AWAY = "icons/away.gif";
+    String ADD_CONTACT = "icons/add_contact.gif";
 }

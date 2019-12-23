@@ -29,8 +29,9 @@ public class ContactsView extends ViewPart {
     public void createPartControl(Composite parent) {
         initializeSession();
         treeViewer = new TreeViewer(parent, SWT.BORDER | SWT.MULTI | SWT.V_SCROLL);
-//        注册给定的adapter factory，对Contact的实例及其子类有效
+//        将treeViewer注册为selection provider,由contact view发布给window selection service
         getSite().setSelectionProvider(treeViewer);
+//        注册给定的adapter factory，对Contact的实例及其子类有效
         Platform.getAdapterManager().registerAdapters(adapterFactory, Contact.class);
 //        jFace的viewer是基于模型的SWT部件适配器（adaptor），可在rcp的view中显示内容，RCP的view则可以包含多个viewer。
 //        content provider:提供树节点，实现了ITreeContentProvider
