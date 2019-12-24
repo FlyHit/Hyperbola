@@ -20,6 +20,6 @@ public class Perspective implements IPerspectiveFactory {
 //		editor不能添加到perspective中，不过可以在perspective中指定editor打开时的位置
 //		layout.addView(ContactsView.ID,IPageLayout.LEFT,1.0f,layout.getEditorArea());
 //		StandaloneView可以隐藏标题区域，这么一来可以防止视图（view）被关闭、移动
-        layout.addStandaloneView(ContactsView.ID, false, IPageLayout.LEFT, 1.0f, layout.getEditorArea());
+        layout.addStandaloneView(ContactsView.ID, false, IPageLayout.LEFT, 0.3f, layout.getEditorArea());
     }
 }

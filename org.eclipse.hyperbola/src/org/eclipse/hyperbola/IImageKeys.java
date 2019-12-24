@@ -27,4 +27,5 @@ public interface IImageKeys {
     String GROUP = "icons/groups.gif";
     String AWAY = "icons/away.gif";
     String ADD_CONTACT = "icons/add_contact.gif";
+    String CHAT = "icons/chat.gif";
 }

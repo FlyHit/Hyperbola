@@ -15,6 +15,7 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
     private ActionFactory.IWorkbenchAction exitAction;
     private ActionFactory.IWorkbenchAction aboutAction;
     private ActionFactory.IWorkbenchAction addContactAction;
+    private ActionFactory.IWorkbenchAction chatAction;
 
     public ApplicationActionBarAdvisor(IActionBarConfigurer configurer) {
         super(configurer);
@@ -31,6 +32,8 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
         register(aboutAction);
         addContactAction = new AddContactAction(window);
         register(addContactAction);
+        chatAction = new ChatAction(window);
+        register(chatAction);
     }
 
     @Override
@@ -38,6 +41,7 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
         MenuManager hyperbolaMenu = new MenuManager("&Hyperbola", "hyperbola");
         hyperbolaMenu.add(addContactAction);
         hyperbolaMenu.add(exitAction);
+        hyperbolaMenu.add(chatAction);
 //        hyperbolaMenu.add(new GroupMarker("other-actions"));
         MenuManager helpMenu = new MenuManager("&Help", "help");
         helpMenu.add(aboutAction);
@@ -51,6 +55,7 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
         IToolBarManager toolBar = new ToolBarManager(coolBar.getStyle());
         coolBar.add(toolBar);
         toolBar.add(addContactAction);
+        toolBar.add(chatAction);
     }
 
     protected void fillTrayItem(IMenuManager trayItem) {
