@@ -24,8 +24,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.*;
 import org.eclipse.ui.actions.ActionFactory.IWorkbenchAction;
 
-public class ChatAction extends Action implements ISelectionListener,
-        IWorkbenchAction {
+public class ChatAction extends Action implements ISelectionListener, IWorkbenchAction {
     private final IWorkbenchWindow window;
     public final static String ID = "org.eclipse.hyperbola.chat";
     private IStructuredSelection selection;
@@ -35,8 +34,8 @@ public class ChatAction extends Action implements ISelectionListener,
         setId(ID);
         setText("&Chat");
         setToolTipText("Chat with the selected contact.");
-        setImageDescriptor(ResourceLocator.imageDescriptorFromBundle(Application.PLUGIN_ID,
-                IImageKeys.CHAT).orElse(null));
+        setImageDescriptor(
+                ResourceLocator.imageDescriptorFromBundle(Application.PLUGIN_ID, IImageKeys.CHAT).orElse(null));
         window.getSelectionService().addSelectionListener(this);
     }
 
@@ -47,8 +46,7 @@ public class ChatAction extends Action implements ISelectionListener,
     public void selectionChanged(IWorkbenchPart part, ISelection incoming) {
         if (incoming instanceof IStructuredSelection) {
             selection = (IStructuredSelection) incoming;
-            setEnabled(selection.size() == 1
-                    && selection.getFirstElement() instanceof ContactsEntry);
+            setEnabled(selection.size() == 1 && selection.getFirstElement() instanceof ContactsEntry);
         } else {
             // Other selections, for example containing text or of other kinds.
             setEnabled(false);

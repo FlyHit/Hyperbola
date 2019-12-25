@@ -32,7 +32,7 @@ import org.eclipse.ui.model.IWorkbenchAdapter;
  * 最后当ContactsView创建时需要注册该适配器工厂，关闭时需要注销该适配器工厂
  */
 public class HyperbolaAdapterFactory implements IAdapterFactory {
-    //	IWorkbenchAdapter是一个适配器接口，为workbench元素提供了可视化表示和层次结构，
+    // IWorkbenchAdapter是一个适配器接口，为workbench元素提供了可视化表示和层次结构，
     // 且无需知道这些元素的具体类型便可将它们显示在UI上
     private IWorkbenchAdapter groupAdapter = new IWorkbenchAdapter() {
         public Object getParent(Object o) {
@@ -49,17 +49,15 @@ public class HyperbolaAdapterFactory implements IAdapterFactory {
                         available++;
                 }
             }
-            return group.getName() + " (" + available + "/" + entries.length
-                    + ")";
+            return group.getName() + " (" + available + "/" + entries.length + ")";
         }
 
-        //        图片的表示形式有两种：image和Image descriptor.前者是重量级对象，需要一直持有句柄，
+        // 图片的表示形式有两种：image和Image descriptor.前者是重量级对象，需要一直持有句柄，
 //        并且不使用时需要dispose;后者是图片的轻量级表示,只有在需要图片的时候才会去路径寻找并创建图片
         public ImageDescriptor getImageDescriptor(Object object) {
 //            ResourceLocator:包含一些用于在插件里寻找jFace资源的方法(imageDescriptorFromBundle():从插件中加载图片)
 //            这里使用了Option类,可用于解决判断对象是否为null的问题
-            return ResourceLocator.imageDescriptorFromBundle(Application.PLUGIN_ID,
-                    IImageKeys.GROUP).orElse(null);
+            return ResourceLocator.imageDescriptorFromBundle(Application.PLUGIN_ID, IImageKeys.GROUP).orElse(null);
         }
 
         public Object[] getChildren(Object o) {
@@ -74,15 +72,13 @@ public class HyperbolaAdapterFactory implements IAdapterFactory {
 
         public String getLabel(Object o) {
             ContactsEntry entry = ((ContactsEntry) o);
-            return entry.getNickname() + " (" + entry.getName() + "@"
-                    + entry.getServer() + ")";
+            return entry.getNickname() + " (" + entry.getName() + "@" + entry.getServer() + ")";
         }
 
         public ImageDescriptor getImageDescriptor(Object object) {
             ContactsEntry entry = ((ContactsEntry) object);
             String key = presenceToKey(entry.getPresence());
-            return ResourceLocator.imageDescriptorFromBundle(Application.PLUGIN_ID,
-                    key).orElse(null);
+            return ResourceLocator.imageDescriptorFromBundle(Application.PLUGIN_ID, key).orElse(null);
         }
 
         public Object[] getChildren(Object o) {
@@ -108,13 +104,11 @@ public class HyperbolaAdapterFactory implements IAdapterFactory {
         return "";
     }
 
-    //	根据适配器的类型（adapter type来实例化相关的类），用到了工厂模式
+    // 根据适配器的类型（adapter type来实例化相关的类），用到了工厂模式
     public Object getAdapter(Object adaptableObject, Class adapterType) {
-        if (adapterType == IWorkbenchAdapter.class
-                && adaptableObject instanceof ContactsGroup)
+        if (adapterType == IWorkbenchAdapter.class && adaptableObject instanceof ContactsGroup)
             return groupAdapter;
-        if (adapterType == IWorkbenchAdapter.class
-                && adaptableObject instanceof ContactsEntry)
+        if (adapterType == IWorkbenchAdapter.class && adaptableObject instanceof ContactsEntry)
             return entryAdapter;
         return null;
     }

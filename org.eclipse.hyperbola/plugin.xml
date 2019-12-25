@@ -15,8 +15,21 @@
          point="org.eclipse.ui.perspectives">
       <perspective
               class="org.eclipse.hyperbola.Perspective"
-              name="Hyperbola Perspective"
-              id="org.eclipse.hyperbola.perspective">
+              icon="icons/chat.gif"
+              id="org.eclipse.hyperbola.perspective"
+              name="Hyperbola Perspective">
+      </perspective>
+       <perspective
+               class="org.eclipse.hyperbola.PerspectiveDebug"
+               icon="icons/debug_persp.gif"
+               id="org.eclipse.hyperbola.perspectives.debugView"
+               name="Debug">
+       </perspective>
+       <perspective
+               class="org.eclipse.hyperbola.PerspectiveFreeMoving"
+               icon="icons/groups.gif"
+               id="org.eclipse.hyperbola.perspectives.freeMoving"
+               name="Free Moving">
       </perspective>
    </extension>
     <extension
@@ -37,6 +50,22 @@
                 id="org.eclipse.hyperbola.editors.chat"
                 name="Chat">
         </editor>
+    </extension>
+    <extension
+            id="product"
+            point="org.eclipse.core.runtime.products">
+        <product
+                application="org.eclipse.hyperbola.application"
+                name="Hyperbola Chat Client">
+            <property
+                    name="appName"
+                    value="Hyperbola Chat Client">
+            </property>
+            <property
+                    name="windowImages"
+                    value="icons/alt16.gif,icons/alt32.gif">
+            </property>
+        </product>
     </extension>
 
 </plugin>

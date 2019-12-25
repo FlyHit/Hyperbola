@@ -8,7 +8,8 @@ import org.eclipse.ui.application.IActionBarConfigurer;
 
 /**
  * 创建窗体动作,使用createActionBarAdvisor()初始化
- *
+ *该advisor也是提供窗体层面上的建议，负责定义出现在菜单等处的建议，每个窗体
+ * 都有一个ActionBarAdvisor实例
  * @author 11648
  */
 public class ApplicationActionBarAdvisor extends ActionBarAdvisor {

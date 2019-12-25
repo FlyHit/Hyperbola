@@ -19,7 +19,7 @@ public class Application implements IApplication {
         Display display = PlatformUI.createDisplay();
         try {
 //			创建workbench，将它和display和workbenchAdvisor关联，并运行workbench UI
-//			WorkbenchAdvisor负责告知workbench做什么，怎么做
+//			workbench并不知道怎么运作，WorkbenchAdvisor负责告知workbench做什么，怎么做
             int returnCode = PlatformUI.createAndRunWorkbench(display, new ApplicationWorkbenchAdvisor());
             if (returnCode == PlatformUI.RETURN_RESTART)
                 return IApplication.EXIT_RESTART;

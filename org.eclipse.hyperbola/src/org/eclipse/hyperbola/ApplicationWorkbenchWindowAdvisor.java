@@ -23,34 +23,35 @@ import java.util.Optional;
 
 /**
  * 配置窗体
- *
+ *该advisor提供窗体层面（window-level）上的建议，参与显示隐藏菜单栏等，
+ * 以及配置在窗体中显示的控件。每个窗体都有一个workbenchWindowAdvisor
  * @author 11648
  */
 public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
-	//	image和TrayItem作为实例域保存，因此在窗口关闭的时候可以被删除（释放）
+	// image和TrayItem作为实例域保存，因此在窗口关闭的时候可以被删除（释放）
 	private Image statusImage;
 	private TrayItem trayItem;
 	private Image trayImage;
 	private ApplicationActionBarAdvisor actionBarAdvisor;
 
-    public ApplicationWorkbenchWindowAdvisor(IWorkbenchWindowConfigurer configurer) {
-        super(configurer);
-    }
+	public ApplicationWorkbenchWindowAdvisor(IWorkbenchWindowConfigurer configurer) {
+		super(configurer);
+	}
 
-    @Override
-    public ActionBarAdvisor createActionBarAdvisor(IActionBarConfigurer configurer) {
+	@Override
+	public ActionBarAdvisor createActionBarAdvisor(IActionBarConfigurer configurer) {
 		actionBarAdvisor = new ApplicationActionBarAdvisor(configurer);
 		return actionBarAdvisor;
-    }
+	}
 
 	// 在窗体控件创建前调用,可设置窗体的初始尺寸,隐藏状态栏和工具栏
-    @Override
+	@Override
 	public void preWindowOpen() {
 		IWorkbenchWindowConfigurer configurer = getWindowConfigurer();
 		configurer.setInitialSize(new Point(800, 600));
 		configurer.setShowCoolBar(true);
 		configurer.setShowStatusLine(true);
-		configurer.setTitle("Hyperbola！");
+//		configurer.setTitle("Hyperbola！");  // 要显示产品名，应该去掉这行
 		configurer.setShowMenuBar(true); // 显示菜单栏,如果没有菜单项仍不可见
 	}
 
@@ -115,8 +116,8 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 			return null;
 //        Tray——TrayItem
 		trayItem = new TrayItem(tray, SWT.NONE);
-		Optional<ImageDescriptor> imageDescriptorOption = ResourceLocator.imageDescriptorFromBundle(
-				Application.PLUGIN_ID, IImageKeys.ONLINE);
+		Optional<ImageDescriptor> imageDescriptorOption = ResourceLocator
+				.imageDescriptorFromBundle(Application.PLUGIN_ID, IImageKeys.ONLINE);
 		imageDescriptorOption.ifPresent(imageDescriptor -> trayImage = imageDescriptor.createImage());
 		trayItem.setImage(trayImage);
 		trayItem.setToolTipText("Hyperbola");
@@ -129,8 +130,8 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 	 */
 	private void initStatusLine() {
 //		注意ImageDescriptor可能为null，不能从null创建image
-		Optional<ImageDescriptor> imageDescriptorOption = ResourceLocator.imageDescriptorFromBundle(
-				Application.PLUGIN_ID, IImageKeys.GROUP);
+		Optional<ImageDescriptor> imageDescriptorOption = ResourceLocator
+				.imageDescriptorFromBundle(Application.PLUGIN_ID, IImageKeys.GROUP);
 		imageDescriptorOption.ifPresent(imageDescriptor -> statusImage = imageDescriptor.createImage());
 		IStatusLineManager statusLine = getWindowConfigurer().getActionBarConfigurer().getStatusLineManager();
 		statusLine.setMessage(statusImage, "Online");

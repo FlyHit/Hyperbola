@@ -5,6 +5,13 @@ import org.eclipse.ui.application.IWorkbenchWindowConfigurer;
 import org.eclipse.ui.application.WorkbenchAdvisor;
 import org.eclipse.ui.application.WorkbenchWindowAdvisor;
 
+/**
+ * 该advisor提供应用层面（application level）的建议，参与workbench的启动以及关闭
+ * 每个运行的application只有一个workbench。每个Advisor（三种）都有一个相关联的configurer，
+ * configurer使得这些advisor可以访问workbench、window、action bar。每种类型的advisor
+ * 对应相应类型的configurer，由于configurer为advisor提供了对workbench的访问特权，
+ * 因此绝不能将configurer传递给其他插件
+ */
 public class ApplicationWorkbenchAdvisor extends WorkbenchAdvisor {
 
     private static final String PERSPECTIVE_ID = "org.eclipse.hyperbola.perspective"; //$NON-NLS-1$

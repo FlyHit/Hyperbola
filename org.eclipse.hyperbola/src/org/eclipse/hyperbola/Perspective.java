@@ -5,6 +5,7 @@ import org.eclipse.ui.IPerspectiveFactory;
 
 // IPerspectiveFactory:生成初始的页面布局和可视的动作集（action set）
 public class Perspective implements IPerspectiveFactory {
+    public final static String ID = "org.eclipse.hyperbola.perspective";
 
     /**
      * 创建页面的初始布局
